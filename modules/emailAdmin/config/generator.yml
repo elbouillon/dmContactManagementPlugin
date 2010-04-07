@@ -1,0 +1,39 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: Email
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: email
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields: {  }
+      list:
+        display:
+          - '=id'
+          - contact_list
+          - type
+          - email
+          - related_id
+        sort:
+          - id
+          - asc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - id
+          - type
+          - email
+          - related_id
+      form:
+        display:
+          Contacts: [contact_list]
+          Others: [type, email, related_id]
+        class: EmailAdminForm
+        fields: {  }
+      edit: ~
+      new: ~

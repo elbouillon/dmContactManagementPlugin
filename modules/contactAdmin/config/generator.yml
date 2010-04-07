@@ -1,0 +1,60 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: Contact
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: contact
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields:
+        companies_list:
+          label: Companies
+        project_list:
+          label: Projects
+      list:
+        display:
+          - '=id'
+          - user_id
+          - image_id
+          - phone_numbers_list
+          - addresses_list
+          - emails_list
+          - companies_list
+          - project_list
+          - type
+          - firstname
+          - lastname
+          - job_title
+          - notes
+        sort:
+          - id
+          - asc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - id
+          - type
+          - firstname
+          - lastname
+          - job_title
+          - notes
+          - image_id
+          - user_id
+      form:
+        display:
+          NONE: [user_id]
+          Image: [image_id_form, image_id_view]
+          Projects: [project_list]
+          'Phone numbers': [phone_numbers_list]
+          Address: [addresses_list]
+          Emails: [emails_list]
+          Others: [type, firstname, lastname, job_title, notes]
+        class: ContactAdminForm
+        fields: {  }
+      edit: ~
+      new: ~

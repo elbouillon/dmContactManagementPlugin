@@ -1,0 +1,39 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: PhoneNumber
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: phone_number
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields: {  }
+      list:
+        display:
+          - '=id'
+          - contact_list
+          - type
+          - number
+          - related_id
+        sort:
+          - id
+          - asc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - id
+          - type
+          - number
+          - related_id
+      form:
+        display:
+          Contacts: [contact_list]
+          Others: [type, number, related_id]
+        class: PhoneNumberAdminForm
+        fields: {  }
+      edit: ~
+      new: ~
