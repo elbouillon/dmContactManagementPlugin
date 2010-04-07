@@ -12,5 +12,8 @@
  */
 abstract class PluginContact extends BaseContact
 {
-
+  public function __toString()
+  {
+    return $this->firstname . " " . $this->lastname;
+  }
 }

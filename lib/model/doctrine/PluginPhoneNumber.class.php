@@ -12,5 +12,8 @@
  */
 abstract class PluginPhoneNumber extends BasePhoneNumber
 {
-
+  public function  __toString()
+  {
+    return $this->number;
+  }
 }

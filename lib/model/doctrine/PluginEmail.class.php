@@ -12,5 +12,8 @@
  */
 abstract class PluginEmail extends BaseEmail
 {
-
+  public function  __toString()
+  {
+    return $this->email;
+  }
 }
