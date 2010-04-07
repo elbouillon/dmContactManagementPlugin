@@ -6,8 +6,62 @@ Company:
     short_name:   { type: string(50) }
     notes:        { type: string(4000) }
     homepage:     { type: string(100) }
+  relations:
+    Contacts:
+      class:    Contact
+      local:    company_id
+      foreign:  contact_id
+      refClass: CompanyContactRel
 
-    
+
+CompanyContactRel:
+  columns:
+    role:         { type: enum, values: ['billing', 'contact', 'default'], default: 'default' }
+    company_id:   { type: integer(4), primary: true, unsigned: true, notnull: true }
+    contact_id:   { type: integer(4), primary: true, unsigned: true, notnull: true }
+
+
+Contact:
+  columns:
+    id:           { type: integer(4), primary: true, unsigned: true, notnull: true, autoincrement: true }
+    type:         { type: string(100), notnull: true }
+    firstname:    { type: string(100), notnull: true }
+    lastname:     { type: string(100) }
+    job_title:    { type: string(100) }
+    notes:        { type: string(4000), extra: markdown }
+    image_id:     { type: integer }
+    user_id:      { type: integer }
+  relations:
+    Companies:
+      class:    Company
+      local:    contact_id
+      foreign:  company_id
+      refClass: CompanyContactRel
+    User:
+      class:        DmUser
+      local:        user_id
+      cascade:      [delete]
+    Image:
+      class:        DmMedia
+      local:        image_id
+      cascade:      [delete]
+    PhoneNumbers:
+      class:        PhoneNumber
+      local:        id
+      foreign:      related_id
+      cascade:      [delete]
+    Addresses:
+      class:        Address
+      local:        id
+      foreign:      related_id
+      cascade:      [delete]
+    Emails:
+      class:        Email
+      local:        id
+      foreign:      related_id
+      cascade:      [delete]
+
+
 Email:
   columns:
     id:         { type: integer(4), unsigned: true, primary: true, notnull: true, autoincrement: true }
@@ -33,46 +87,3 @@ PhoneNumber:
     type:       { type: enum, values: ['work', 'work_fax', 'home', 'home_fax', 'central', 'other'], default: 'work' }
     number:     { type: string(100) }
     related_id: { type: integer(4), unsigned: true, notnull: true }
-
-
-CompanyContactRel:
-  columns:
-    role:         { type: enum, values: ['billing', 'contact', 'default'], default: 'default' }
-    company_id:   { type: integer(4), primary: true, unsigned: true, notnull: true }
-    contact_id:   { type: integer(4), primary: true, unsigned: true, notnull: true }
-
-
-Contact:
-  columns:
-    id:           { type: integer(4), primary: true, unsigned: true, notnull: true, autoincrement: true }
-    type:         { type: string(100), notnull: true }
-    firstname:    { type: string(100), notnull: true }
-    lastname:     { type: string(100) }
-    job_title:    { type: string(100) }
-    notes:        { type: string(4000), extra: markdown }
-    image_id:     { type: integer }
-    user_id:      { type: integer }
-  relations:
-    User:
-      class:        DmUser
-      local:        user_id
-      cascade:      [delete]
-    Image:
-      class:        DmMedia
-      local:        image_id
-      cascade:      [delete]
-    PhoneNumbers:
-      class:        PhoneNumber
-      local:        id
-      foreign:      related_id
-      cascade:      [delete]
-    Addresses:
-      class:        Address
-      local:        id
-      foreign:      related_id
-      cascade:      [delete]
-    Emails:
-      class:        Email
-      local:        id
-      foreign:      related_id
-      cascade:      [delete]
