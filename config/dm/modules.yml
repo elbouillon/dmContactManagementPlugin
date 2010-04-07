@@ -1,0 +1,23 @@
+  Contact:
+    Contact:
+      page:  true
+      components:
+        list:
+        show:
+
+  ContactData:
+
+    PhoneNumber:
+      components:
+        list:
+        show:
+
+    Address:
+      components:
+        list:
+        show:
+
+    Email:
+      components:
+        list:
+        show:
