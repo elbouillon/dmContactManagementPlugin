@@ -46,16 +46,19 @@ Contact:
       local:        image_id
       cascade:      [delete]
     PhoneNumbers:
+      type:         many
       class:        PhoneNumber
       local:        id
       foreign:      related_id
       cascade:      [delete]
     Addresses:
+      type:         many
       class:        Address
       local:        id
       foreign:      related_id
       cascade:      [delete]
     Emails:
+      type:         many
       class:        Email
       local:        id
       foreign:      related_id
@@ -84,6 +87,6 @@ Address:
 PhoneNumber:
   columns:
     id:         { type: integer(4), unsigned: true, primary: true, notnull: true, autoincrement: true }
-    type:       { type: enum, values: ['work', 'work_fax', 'home', 'home_fax', 'central', 'other'], default: 'work' }
+    type:       { type: enum, values: ['fax', 'home', 'home_fax', 'mobile', 'other', 'pager', 'work', 'work_fax'], default: 'work' }
     number:     { type: string(100) }
     related_id: { type: integer(4), unsigned: true, notnull: true }
