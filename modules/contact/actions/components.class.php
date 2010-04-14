@@ -3,6 +3,8 @@
  * Contact components
  * 
  * No redirection nor database manipulation ( insert, update, delete ) here
+ * 
+ * 
  */
 class contactComponents extends myFrontModuleComponents
 {
@@ -19,6 +21,11 @@ class contactComponents extends myFrontModuleComponents
     $query = $this->getShowQuery();
     
     $this->contact = $this->getRecord($query);
+  }
+
+  public function executeImport()
+  {
+    $this->form = $this->forms['ContactImport'] = new ContactImportForm();
   }
 
 
